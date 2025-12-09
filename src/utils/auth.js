@@ -5,29 +5,42 @@ import { getAuthForTenant } from '@src/utils/firebase';
 import UsersApi from '@src/api/users.api';
 
 const tenantId = import.meta.env.VITE_APP_FIREBASE_TENANT_ID;
-const auth = getAuthForTenant(tenantId);
+
+const getAuth = () => {
+  try {
+    return getAuthForTenant(tenantId);
+  } catch (error) {
+    console.error('Firebase auth is not available:', error.message);
+    throw error;
+  }
+};
 
 export const signIn = async (email, password) => {
+  const auth = getAuth();
   // await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   await auth.signInWithEmailAndPassword(email, password);
 };
 
 export const signInWithGoogle = async () => {
+  const auth = getAuth();
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   await auth.signInWithPopup(googleProvider);
 };
 
 export const signOut = async () => {
+  const auth = getAuth();
   await auth.signOut();
 };
 
 export const createNewUser = async (email, password) => {
+  const auth = getAuth();
   const res = await auth.createUserWithEmailAndPassword(email, password);
   await res.user.sendEmailVerification();
   return res.user;
 };
 
 export const sendPasswordResetEmail = async (email) => {
+  const auth = getAuth();
   await auth.sendPasswordResetEmail(email);
 };
 
@@ -67,6 +80,7 @@ export const getCurrentAuthenticatedUser = async () => {
 };
 
 export const handleFirebaseLogout = (setAlert) => {
+  const auth = getAuth();
   auth.signOut();
   $auth.reset();
   $global.reset();

@@ -6,12 +6,12 @@ import NotFound from '@src/components/views/NotFound';
 import Home from '@src/components/views/Home';
 import PublicRoutes from '@src/components/global/PublicRoutes';
 import PrivateRoutes from '@src/components/global/PrivateRoutes';
-import AppWrapper from './components/global/AppWrapper';
-import Alert from './components/global/Alert';
 import VideoUpload from '@src/components/views/VideoUpload';
 import VideoProcessing from '@src/components/views/VideoProcessing';
 import VideoResults from '@src/components/views/VideoResults';
 import MyVideos from '@src/components/views/MyVideos';
+import Alert from './components/global/Alert';
+import AppWrapper from './components/global/AppWrapper';
 
 function App() {
   return (

@@ -10,21 +10,25 @@ import Loadable from '../Loadable';
 const AppWrapper = () => {
   const { breakPoint } = useWindowSize();
 
-  auth.onAuthStateChanged(async (fbUser) => {
-    $global.update({
-      isLoading: true,
-    });
-    if (fbUser) {
-      await handleFirebaseLogin(fbUser);
-      await getCurrentAuthenticatedUser();
-    } else if ($global.value.isSignedIn) {
-      await handleFirebaseLogout();
-    }
+  if (auth) {
+    auth.onAuthStateChanged(async (fbUser) => {
+      $global.update({
+        isLoading: true,
+      });
+      if (fbUser) {
+        await handleFirebaseLogin(fbUser);
+        await getCurrentAuthenticatedUser();
+      } else if ($global.value.isSignedIn) {
+        await handleFirebaseLogout();
+      }
 
-    $global.update({
-      isLoading: false,
+      $global.update({
+        isLoading: false,
+      });
     });
-  });
+  } else {
+    console.error('Firebase auth is not initialized. Please configure Firebase environment variables.');
+  }
   return (
     <Container fluid className="p-0">
       {import.meta.env.VITE_DEV_IS_BREAKPOINT_VISABLE === 'true' && (

@@ -11,7 +11,12 @@
     "clean": "rm -rf node_modules && rm yarn.lock && yarn install",
     "clean-cache": "rm -rf node_modules/.vite",
     "dev-restart": "yalc update && yarn clean-cache",
-    "watch": "nodemon --watch .yalc --exec 'yarn dev-restart'"
+    "watch": "nodemon --watch .yalc --exec 'yarn dev-restart'",
+    "deploy:supabase": "supabase db push",
+    "supabase:link": "supabase link",
+    "supabase:migrate": "supabase migration up",
+    "supabase:status": "supabase status",
+    "supabase:reset": "supabase db reset"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -29,7 +34,6 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.2",
     "react-select": "^5.10.0",
-    "sass": "1.35.1",
     "vite-plugin-svgr": "^4.2.0",
     "yalc": "^1.0.0-pre.53"
   },

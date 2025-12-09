@@ -1,16 +1,19 @@
 import { getSupabaseToken } from './supabaseAuth';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 class ApiClient {
   constructor() {
-    this.baseUrl = API_BASE_URL;
+    this.baseUrl = `${SUPABASE_URL}/functions/v1`;
+    this.anonKey = SUPABASE_ANON_KEY;
   }
 
   async getHeaders() {
     const token = await getSupabaseToken();
     const headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'apikey': this.anonKey
     };
 
     if (token) {
@@ -76,7 +79,7 @@ class ApiClient {
   }
 
   async uploadVideo(file) {
-    const uploadUrlResponse = await this.post('/api/upload-url', {
+    const uploadUrlResponse = await this.post('/upload-video', {
       filename: file.name,
       filesize: file.size,
       mimetype: file.type
@@ -101,28 +104,22 @@ class ApiClient {
   }
 
   async processVideo(videoId) {
-    return this.post('/api/process', {
-      video_id: videoId
-    });
+    throw new Error('Video processing is not available via Edge Functions. FFmpeg video processing requires a separate backend service with FFmpeg installed. Please see documentation for details.');
   }
 
   async getResults(videoId, includeFrames = false) {
-    const endpoint = `/api/results/${videoId}${includeFrames ? '?include_frames=true' : ''}`;
+    const endpoint = `/results/${videoId}${includeFrames ? '?include_frames=true' : ''}`;
     return this.get(endpoint);
   }
 
   async getVideoHistory(params = {}) {
     const queryParams = new URLSearchParams(params).toString();
-    const endpoint = `/api/videos${queryParams ? `?${queryParams}` : ''}`;
+    const endpoint = `/videos${queryParams ? `?${queryParams}` : ''}`;
     return this.get(endpoint);
   }
 
   async deleteVideo(videoId) {
-    return this.delete(`/api/videos/${videoId}`);
-  }
-
-  async healthCheck() {
-    return this.get('/api/health');
+    return this.delete(`/videos/${videoId}`);
   }
 }
 

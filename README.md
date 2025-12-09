@@ -43,7 +43,6 @@ This application provides comprehensive video quality analysis for content creat
    ```env
    VITE_SUPABASE_URL=your_supabase_url
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   VITE_API_BASE_URL=http://localhost:3001
    ```
 
 3. **Start Development Server:**
@@ -53,47 +52,42 @@ This application provides comprehensive video quality analysis for content creat
 
    Frontend runs on http://localhost:5173
 
-### Backend Setup
+### Edge Functions (Deployed Automatically)
 
-1. **Navigate to API Directory:**
-   ```bash
-   cd api
-   ```
+The following Supabase Edge Functions are deployed:
+- `upload-video` - Generate signed upload URLs
+- `videos` - List and delete videos
+- `results` - Fetch video analysis results
 
-2. **Install Dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment:**
-   Create `api/.env` file:
-   ```env
-   PORT=3001
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-   OPENAI_API_KEY=your_openai_api_key
-   FRONTEND_URL=http://localhost:5173
-   ```
-
-4. **Start API Server:**
-   ```bash
-   npm run dev
-   ```
-
-   Backend runs on http://localhost:3001
+**Important:** Edge Functions cannot perform video processing (FFmpeg not available). See [VIDEO_PROCESSING_LIMITATION.md](./VIDEO_PROCESSING_LIMITATION.md) for solutions.
 
 ## Architecture
 
 - **Frontend:** React + Vite + Bootstrap + Supabase Auth
-- **Backend:** Express.js + FFmpeg + OpenAI APIs
+- **API:** Supabase Edge Functions
 - **Database & Storage:** Supabase
-- **Hosting:** Firebase (frontend), Railway/Render/Heroku (backend)
+- **Hosting:** Firebase (frontend)
+
+**Note:** Video processing (FFmpeg-based frame extraction and OpenAI analysis) requires a separate backend service. The Express.js backend is included in the `/api` folder but must be deployed separately. See [VIDEO_PROCESSING_LIMITATION.md](./VIDEO_PROCESSING_LIMITATION.md) for details and solutions.
+
+## Current Functionality
+
+### ✅ Working Features
+- User authentication (Supabase Auth)
+- Video upload with signed URLs
+- Video list management
+- Video deletion with storage cleanup
+- Results retrieval for completed analyses
+- Database with Row Level Security
+
+### ⚠️ Requires Additional Setup
+- **Video Processing**: FFmpeg-based frame extraction and AI analysis requires deploying the Express.js backend from `/api` folder to a service with FFmpeg support (Railway, Render, Fly.io, etc.)
 
 ## Usage
 
 1. **Sign Up/Login** - Create account with email and password
 2. **Upload Video** - Select video file (max 100MB, MP4/MOV/WebM/AVI/MKV)
-3. **Processing** - Watch real-time progress as AI analyzes your video
+3. **Processing** - *Requires backend deployment* - AI analyzes your video
 4. **View Results** - Get detailed scores and improvement recommendations
 5. **Manage Videos** - Access history, delete videos, download reports
 
@@ -118,12 +112,17 @@ Topics covered:
 - Bootstrap 5
 - Supabase JS Client
 
-**Backend:**
-- Node.js + Express
-- Supabase (Database, Storage, Auth)
+**API:**
+- Supabase Edge Functions (Deno runtime)
+
+**Backend (Optional - for video processing):**
+- Node.js + Express (in `/api` folder)
 - FFmpeg (Video processing)
 - OpenAI GPT-4 Vision API
 - OpenAI Whisper API
+
+**Infrastructure:**
+- Supabase (Database, Storage, Auth, Edge Functions)
 
 ## Cost Estimates
 

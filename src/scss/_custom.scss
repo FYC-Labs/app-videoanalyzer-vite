@@ -1,0 +1,19 @@
+// CUSTUM OVERRIDES //
+.breakpointBadge {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+
+.rounded-15 {
+  border-radius: 15px !important;
+}
+.rounded-top-15 {
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+}
+.rounded-bottom-15 {
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
+}

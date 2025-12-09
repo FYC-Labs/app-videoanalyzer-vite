@@ -1,0 +1,76 @@
+$responsive: "translate-middle", "position", "top", "start", "bottom", "end",
+  "font-size", "font-weight", "rounded-top", "shadow";
+
+$add-values: (
+  "font-weight": (
+    100: 100,
+    200: 200,
+    300: 300,
+    400: 400,
+    500: 500,
+    600: 600,
+    700: 700,
+    800: 800,
+    900: 900,
+  ),
+  "rounded-top": (
+    4: 1rem,
+    0: 0rem,
+  ),
+  "shadow": (
+    none: none,
+  ),
+);
+
+$new-utilities: (
+  "cursor": (
+    property: cursor,
+    class: cursor,
+    responsive: true,
+    values: auto pointer grab,
+  ),
+  "isolation": (
+    property: isolation,
+    class: "",
+    responsive: true,
+    values: isolate,
+  ),
+);
+
+@use "sass:map";
+@function set-responsive($utility-name) {
+  @return map.set(map-get($utilities, $utility-name), "responsive", true);
+}
+
+@function add-values($utility-name, $utility-value) {
+  $local-utility-value: map-get($utilities, $utility-name, "values");
+  @if type-of($local-utility-value) == "map" {
+    @return map-merge(
+      map-get($utilities, $utility-name),
+      "values",
+      $utility-value
+    );
+  }
+  @return map-merge(
+    map-get($utilities, $utility-name),
+    (
+      values:
+        append(
+          map-get(map-get($utilities, $utility-name), "values"),
+          $utility-value
+        ),
+    )
+  );
+}
+
+$utilities: map-merge($utilities, $new-utilities);
+$add-map: ();
+@each $name, $value in $add-values {
+  $add-map: map.set($add-map, $name, add-values($name, $value));
+}
+$utilities: map-merge($utilities, $add-map);
+$responsive-map: ();
+@each $value in $responsive {
+  $responsive-map: map.set($responsive-map, $value, set-responsive($value));
+}
+$utilities: map-merge($utilities, $responsive-map);

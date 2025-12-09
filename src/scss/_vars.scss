@@ -1,0 +1,92 @@
+//Common Overwrites.. 
+$primary: #3A82F5;
+$primary-900: #152F58;
+
+$secondary: #111827;
+
+$info: #3270f7;
+
+$success: #6DD09D;
+
+$warning: #e7d94a;
+
+$danger: #DB524C;
+
+$light: #f0f4f6;
+$light-50: #FBFCFC;
+
+$dark: #373636;
+$dark-300: #777676;
+$dark-200: #979696;
+
+$grey: #E5E6E9;
+
+$transparent: transparent;
+$white: white;
+$black: black;
+
+$theme-colors: (
+  "primary": $primary,
+  "primary-900": $primary-900,
+  "secondary": $secondary,
+  "info": $info,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "dark-300": $dark-300,
+  "dark-200": $dark-200,
+  "transparent": $transparent,
+  "white": $white,
+  "black": $black,
+  "grey": $grey,
+);
+
+
+$small-font-size: 12px;
+$body-font-size: 14px;
+$font-size-base: 1rem;
+$lead-font-size: 20px;
+$h1-font-size: 48px;
+$h2-font-size: 40px;
+$h3-font-size: 36px;
+$h4-font-size: 32px;
+$h5-font-size: 24px;
+
+$body-color: $black;
+$font-family-sans-serif: 'Roboto', sans-serif;
+
+$btn-text-color: #ffffff;
+$btn-outline-text-color-hover: #ffffff;
+
+$spacer: 1rem !default;
+$spacers: () !default;
+
+$min: 0;
+$max: 160; 
+$step: 8;
+@for $i from $min through 160 / 8 { //$max / $step
+  $size: $i * $step;
+  $multiplier: $i * 0.5;
+  $spacers: map-merge($spacers, ($size: $spacer * $multiplier));
+}
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+) !default;
+
+$container-max-widths: (
+  sm: 720px,
+  md: 960px,
+  lg: 1120px,
+  xl: 1280px,
+  xxl: 1520px,
+  xxxl: 1600px,
+) !default;

@@ -1,0 +1,50 @@
+{
+  "name": "template-2024",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "clean": "rm -rf node_modules && rm yarn.lock && yarn install",
+    "clean-cache": "rm -rf node_modules/.vite",
+    "dev-restart": "yalc update && yarn clean-cache",
+    "watch": "nodemon --watch .yalc --exec 'yarn dev-restart'"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fyclabs/tools-fyc-react": "^0.0.3",
+    "bootstrap": "^5.2.3",
+    "bootstrap-sass": "^3.4.1",
+    "firebase": "^11.2.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.2",
+    "react-select": "^5.10.0",
+    "sass": "1.35.1",
+    "vite-plugin-svgr": "^4.2.0",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.55.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.69.7",
+    "vite": "^5.0.8",
+    "yarn": "^1.22.21"
+  }
+}

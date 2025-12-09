@@ -1,0 +1,61 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2020: true, node: true, },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'airbnb',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      modules: true,
+    },
+  },
+  settings: {
+    react: { version: '18.2' },
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        extensions: ['.js', '.jsx'],
+      },
+    },
+  },
+  plugins: ['react-refresh'],
+  rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 0,
+    'no-plusplus': 'off',
+    'no-console': 'off',
+    'no-underscore-dangle': 'off',
+    'linebreak-style': 'off',
+    'operator-linebreak': 'off',
+    'object-curly-newline': 'off',
+    'arrow-parens': 'off',
+    'react/function-component-definition': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'max-len': 'off',
+    'react/no-array-index-key': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'import/no-unresolved': 'off',
+    'no-use-before-define': 'off',
+    'react/no-unstable-nested-components': [
+      'off',
+    ],
+  },
+}

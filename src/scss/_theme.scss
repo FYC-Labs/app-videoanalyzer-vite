@@ -1,0 +1,98 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.hover:hover {
+  font-weight: bold;
+}
+
+.form-control-loadable {
+  color: $black !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: all 0.2s;
+  height: 32px;
+  background-color: $primary !important;
+}
+
+.text-loadable {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 5px 5px 5px 5px !important;
+  transition: all 0.2s;
+  background-color: $primary !important;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}
+h2 {
+  font-size: $h2-font-size;
+}
+h3 {
+  font-size: $h3-font-size;
+} 
+h4 {
+  font-size: $h4-font-size;
+}
+h5 {
+  font-size: $h5-font-size;
+}
+.lead {
+  font-size: $lead-font-size;
+}
+body {
+  font-size: $body-font-size;
+}
+small {
+  font-size: $small-font-size;
+}
+.btn {
+  border-radius: 25px;
+}
+.z-index-9999 {
+  z-index: 9999 !important;
+}
+@each $color-name, $color-value in $theme-colors {
+  .notification-#{$color-name} {
+    background-color: lighten($color-value, 30%) !important;
+    color: darken($color-value, 30%) !important;
+    border-color: $color-value !important;
+  }
+}
+.notification {
+  font-size: 14px;
+  color: #505050; // $dark-400 in the figma
+  font-weight: 500;
+  border: 1px solid $warning;
+
+  .decoration-icon {
+    margin-right: 16px;
+  }
+
+  &.notification-warning {
+    background-color: $warning;
+  }
+
+  &.notification-success {
+    background-color: $success;
+    border-color: $success;
+  }
+
+  &.notification-error {
+    background-color: $danger;
+    border-color: $danger;
+  }
+
+  ul {
+    border-top: 1px solid $warning;
+    border-color: inherit;
+    margin: 0;
+  }
+
+  li {
+    line-height: 20px;
+  }
+}

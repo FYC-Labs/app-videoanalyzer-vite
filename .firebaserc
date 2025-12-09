@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "{PROJECTID}"
+  },
+  "targets": {
+    "{PROJECTID}": {
+      "hosting": {
+        "prod": [
+          "{PROJECTID}"
+        ],
+        "qa": [
+          "qa-{PROJECTID}"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@import "./_vars";
+
+:export {
+  @each $name, $value in $grid-breakpoints {
+    #{$name}: $value;
+  }
+}

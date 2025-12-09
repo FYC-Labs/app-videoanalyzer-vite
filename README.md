@@ -7,44 +7,143 @@ Please see below these notes for a readme that you can use for your project.
 [![Maintainability](https://api.codeclimate.com/v1/badges/7efff12ae6b4d65a3dcf/maintainability)](https://codeclimate.com/repos/65d6b800671d0200dfc32a2f/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5c8ee693fec2439abaeddef2e5400a69)](https://app.codacy.com/gh/FYC-Labs/app-template-2024-vite-react/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-# Project Name
+# UGC Video Quality Analysis
 
-Welcome to [Your Project Name]! 🚀
+An AI-powered application for analyzing user-generated content (UGC) video quality. Uses OpenAI's GPT-4 Vision and Whisper APIs to evaluate lighting, sharpness, framing, and audio quality.
 
 ## Overview
 
-[brief description of project purpose]
+This application provides comprehensive video quality analysis for content creators, social media managers, and video producers. Upload a video and receive detailed scores and recommendations for improving visual and audio quality.
 
-## Getting Started
+**Key Features:**
+- Frame-by-frame video analysis using AI
+- Audio quality evaluation
+- Detailed scoring (lighting, sharpness, framing, audio)
+- Issue detection and categorization
+- Secure authentication with Supabase
+- Video history management
 
-1. **Clone the Repository:**
-   git clone [repository-url]
+## Quick Start
 
-2. **Navigate to the Project Directory:**
-   cd [project-directory]
+### Prerequisites
+- Node.js 18+
+- Supabase account (for database, storage, auth)
+- OpenAI API key (for analysis)
+- FFmpeg (for backend video processing)
 
-3. **Install Dependencies:**
-   yarn
+### Frontend Setup
 
-4. **Start the Project:**
-   yarn start
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Configure Environment:**
+   Copy `.env.example` to `.env` and add your Supabase credentials:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   VITE_API_BASE_URL=http://localhost:3001
+   ```
+
+3. **Start Development Server:**
+   ```bash
+   npm start
+   ```
+
+   Frontend runs on http://localhost:5173
+
+### Backend Setup
+
+1. **Navigate to API Directory:**
+   ```bash
+   cd api
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment:**
+   Create `api/.env` file:
+   ```env
+   PORT=3001
+   SUPABASE_URL=your_supabase_url
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+   OPENAI_API_KEY=your_openai_api_key
+   FRONTEND_URL=http://localhost:5173
+   ```
+
+4. **Start API Server:**
+   ```bash
+   npm run dev
+   ```
+
+   Backend runs on http://localhost:3001
+
+## Architecture
+
+- **Frontend:** React + Vite + Bootstrap + Supabase Auth
+- **Backend:** Express.js + FFmpeg + OpenAI APIs
+- **Database & Storage:** Supabase
+- **Hosting:** Firebase (frontend), Railway/Render/Heroku (backend)
 
 ## Usage
 
-[Describe how to use or run the project. Provide examples if necessary.]
+1. **Sign Up/Login** - Create account with email and password
+2. **Upload Video** - Select video file (max 100MB, MP4/MOV/WebM/AVI/MKV)
+3. **Processing** - Watch real-time progress as AI analyzes your video
+4. **View Results** - Get detailed scores and improvement recommendations
+5. **Manage Videos** - Access history, delete videos, download reports
+
+## Documentation
+
+For complete documentation, see [PROJECT_DOCUMENTATION.md](./PROJECT_DOCUMENTATION.md)
+
+Topics covered:
+- Detailed architecture overview
+- API endpoints reference
+- Scoring system explained
+- Cost estimates
+- Deployment instructions
+- Security considerations
+- Troubleshooting guide
+
+## Technology Stack
+
+**Frontend:**
+- React 18
+- React Router 6
+- Bootstrap 5
+- Supabase JS Client
+
+**Backend:**
+- Node.js + Express
+- Supabase (Database, Storage, Auth)
+- FFmpeg (Video processing)
+- OpenAI GPT-4 Vision API
+- OpenAI Whisper API
+
+## Cost Estimates
+
+Approximate OpenAI API costs per video:
+- Short video (30s): $0.50 - $1.10
+- Medium video (1-2 min): $0.90 - $2.80
 
 ## Contributing
 
-1. **Create a new branch**
-2. **Make your Enhancements, Changes or Features**
-3. **Submit a pull request**
+1. Create a new branch
+2. Make your changes
+3. Submit a pull request
 
 ## Issues
 
-If you encounter any issues or have suggestions, please create a ticket in Clickup or Userback. We appreciate your feedback!
+If you encounter any issues:
+1. Check the troubleshooting section in documentation
+2. Review API logs for errors
+3. Create an issue with detailed description
 
 ## License
 
-This project is licensed under the [Your License Name] License - see the LICENSE file for details.
-
-Happy coding! 🚀✨
+This project is licensed under the MIT License - see the LICENSE.md file for details.

@@ -8,6 +8,10 @@ import PublicRoutes from '@src/components/global/PublicRoutes';
 import PrivateRoutes from '@src/components/global/PrivateRoutes';
 import AppWrapper from './components/global/AppWrapper';
 import Alert from './components/global/Alert';
+import VideoUpload from '@src/components/views/VideoUpload';
+import VideoProcessing from '@src/components/views/VideoProcessing';
+import VideoResults from '@src/components/views/VideoResults';
+import MyVideos from '@src/components/views/MyVideos';
 
 function App() {
   return (
@@ -24,7 +28,10 @@ function App() {
               <Route path="/public" element={<h1>Public Route</h1>} />
             </Route>
             <Route element={<PrivateRoutes />}>
-              {/* NOTE: private routes go here */}
+              <Route path="/upload" element={<VideoUpload />} />
+              <Route path="/processing/:videoId" element={<VideoProcessing />} />
+              <Route path="/results/:videoId" element={<VideoResults />} />
+              <Route path="/my-videos" element={<MyVideos />} />
               <Route path="/private" element={<h1>Private Route</h1>} />
             </Route>
           </Route>
